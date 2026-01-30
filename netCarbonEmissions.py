@@ -1,11 +1,11 @@
-def calculateNetCarbonEmmisions(products):
+def calculateNetCarbonEmmisions(products, totalTransportDistance=0, averageTransportEmissionsPerKm=0):
     #region <Avoided Emissions>
-    avoidedEmissions = sum(product.amount * product.averageAvoidedEmmisions for product in products)
+    avoidedEmissions = sum(product.amount * product.averageAvoidedEmissions for product in products)
     #endregion
 
     #region <Additional Emissions>
-    emissionsFromExtraTransport = sum(product.amount * product.averageTransportEmmissions for product in products)
-    emissionsFromExtraStorage = sum(product.amount * product.averageStorageEmmissions for product in products)
+    emissionsFromExtraTransport = totalTransportDistance * averageTransportEmissionsPerKm
+    emissionsFromExtraStorage = sum(product.amount * product.averageStorageEmissions for product in products)
     emissionsFromConsumerPickup = 0 # Assume negligable for now
 
     additionalEmissions = emissionsFromExtraTransport + emissionsFromExtraStorage + emissionsFromConsumerPickup
@@ -14,31 +14,17 @@ def calculateNetCarbonEmmisions(products):
     netCarbonReduction = avoidedEmissions - additionalEmissions
     return netCarbonReduction
 
-
-class kgCO2:
-    """
-    Class to represent kilograms of CO2 emissions.
-    """
-    def __init__(self, amount):
-        self.amount = amount
-
-    def __str__(self):
-        return f"{self.amount} kg CO2"
-
-
 class Product:
     """
     amount (kg)
     averageAvoidedEmisions (kg CO2 per kg)
     averageStorageEmissions (kg CO2 per kg)
-    averageTransportEmissions (kg CO2 per kg)
     """
-    def __init__(self, name, amount, averageAvoidedEmissions, averageStorageEmissions, averageTransportEmissions):
+    def __init__(self, name, amount, averageAvoidedEmissions, averageStorageEmissions):
         self.name = name
         self.amount = amount
         self.averageAvoidedEmissions = averageAvoidedEmissions
         self.averageStorageEmissions = averageStorageEmissions
-        self.averageTransportEmissions = averageTransportEmissions
 
     def __repr__(self):
         return f"{self.name}"
