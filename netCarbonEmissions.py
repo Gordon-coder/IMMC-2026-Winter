@@ -1,8 +1,4 @@
-
-
 def calculateNetCarbonEmmisions(products):
-
-
     #region <Avoided Emissions>
     avoidedEmissions = sum(product.amount * product.averageAvoidedEmmisions for product in products)
     #endregion
@@ -18,6 +14,7 @@ def calculateNetCarbonEmmisions(products):
     netCarbonReduction = avoidedEmissions - additionalEmissions
     return netCarbonReduction
 
+
 class kgCO2:
     """
     Class to represent kilograms of CO2 emissions.
@@ -27,7 +24,8 @@ class kgCO2:
 
     def __str__(self):
         return f"{self.amount} kg CO2"
-    
+
+
 class Product:
     """
     amount (kg)
@@ -44,3 +42,4 @@ class Product:
 
     def __repr__(self):
         return f"{self.name}"
+
