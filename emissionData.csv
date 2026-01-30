@@ -1,0 +1,3 @@
+name,amount,averageAvoidedEmissions,averageStorageEmissions
+food,50000,3.0,0.05
+non-food,10000,5.0,0.05
