@@ -13,7 +13,6 @@ with open("./emissionData.csv", 'r') as file:
         averageStorageEmissions = float(row[3])
         product = Product(name, amount, averageAvoidedEmissions, averageStorageEmissions)
         products.append(product)
-
 #endregion
 
 netCarbonReduction = calculateNetCarbonEmmisions(products, totalTransportDistance=50*20, averageTransportEmissionsPerKm=0.2)
