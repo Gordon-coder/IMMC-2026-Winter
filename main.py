@@ -15,5 +15,5 @@ with open("./emissionData.csv", 'r') as file:
         products.append(product)
 #endregion
 
-netCarbonReduction = calculateNetCarbonEmmisions(products, totalTransportDistance=50*20, averageTransportEmissionsPerKm=0.2)
+netCarbonReduction = calculateNetCarbonEmmisions(products, 0.9)
 print(f"Net Carbon Reduction: {netCarbonReduction} kg CO2")
